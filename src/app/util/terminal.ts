@@ -16,6 +16,11 @@ export default class TerminalUtil {
         return [res.selectedIndex, res.selectedText]
     }
 
+    static async esperaEnter(): Promise<void> {
+        terminal.white("\nPressione ENTER para continuar...")        
+        await terminal.inputField({echo: false}).promise
+    }
+
     static exibirChaveValor(chave: string, valor: any): void {
         terminal.yellow(chave).green(valor).white("\n")
     }
