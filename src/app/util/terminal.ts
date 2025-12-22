@@ -16,6 +16,10 @@ export default class TerminalUtil {
         return [res.selectedIndex, res.selectedText]
     }
 
+    static exibirChaveValor(chave: string, valor: any): void {
+        terminal.yellow(chave).green(valor).white("\n")
+    }
+
     static async selecao(
         text: string,
         options: string[]
