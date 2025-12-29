@@ -1,16 +1,13 @@
-import TerminalUtil from "@/app/util/terminal"
-import Fusca from "./Fusca"
-import { terminal } from "terminal-kit"
+import Carro from "./Carro"
 
-export default function corrida() {
-    const carro = new Fusca()
+export default function corrida(carro: Carro, logger: (str: string) => void = console.log) {
     for (let i = 0; i < 10; i++) {
         carro.acelerar()
-        terminal.green(`Velocidade atual: ${carro.velocidadeAtual} km/h\n`)
+        logger(`Velocidade atual: ${carro.velocidadeAtual} km/h\n`)
     }
     for (let i = 0; i < 10; i++) {
         carro.frear()
-        terminal.red(`Velocidade atual: ${carro.velocidadeAtual} km/h\n`)
+        logger(`Velocidade atual: ${carro.velocidadeAtual} km/h\n`)
     }
     carro.frear()
 }
