@@ -31,5 +31,5 @@ export default async function dip() {
             break
     }
     corrida(carro, terminal.gray)
-    const res = await TerminalUtil.esperaEnter()
+    await TerminalUtil.esperaEnter()
 }

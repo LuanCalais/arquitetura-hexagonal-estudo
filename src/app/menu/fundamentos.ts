@@ -1,5 +1,4 @@
 import TerminalUtil from "@/app/util/terminal"
-import { terminal } from "terminal-kit"
 import polimorfismo from "../fundamentos/polimorfismo"
 import dip from "../fundamentos/dip"
 
