@@ -25,9 +25,16 @@ export default class TerminalUtil {
         return TerminalUtil.campoRequerido(label)
     }
 
-    static async sucesso(text: string): Promise<void> {
-        terminal.green(`\n${text}\n`)
-        await TerminalUtil.esperaEnter()
+    static async sucesso(text: string, skipRow: boolean = true): Promise<void> {
+        terminal.green((skipRow ? "\n" : "") + text)
+        terminal.green()
+    }
+
+    static async error(
+        errorMessage: any,
+        skipRow: boolean = true
+    ): Promise<void> {
+        terminal.red((skipRow ? "\n" : "") + errorMessage)
     }
 
     static async menu(options: string[]): Promise<[number, string]> {
