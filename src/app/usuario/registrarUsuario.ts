@@ -4,6 +4,7 @@ import RegistrarUsuario from "@/core/usuario/service/RegistrarUsuario"
 // import InverterSenhaCripto from "@/adapter/auth/InverterSenhaCripto"
 // import EspacoSenhaCripto from "@/adapter/auth/EspacoSenhaCripto"
 import SenhaCripto from "@/adapter/auth/SenhaCripto"
+import RepositorioUsuarioEmMemoria from "@/adapter/mock/RepositorioUsuarioEmMemoria"
 
 export default async function registrarUsuario(): Promise<void> {
     TerminalUtil.titulo("Registrar Usuário")
@@ -11,11 +12,11 @@ export default async function registrarUsuario(): Promise<void> {
     try {
         const nome = await TerminalUtil.campoRequerido(
             "Nome: ",
-            "Usuário Teste"
+            "Usuário Teste",
         )
         const email = await TerminalUtil.campoRequerido(
             "E-mail: ",
-            "email@teste"
+            "email@teste",
         )
         const senha = await TerminalUtil.campoRequerido("Senha: ", "senha123")
 
@@ -27,7 +28,10 @@ export default async function registrarUsuario(): Promise<void> {
 
         // const useCase = new RegistrarUsuario(new InverterSenhaCripto())
         // const useCase = new RegistrarUsuario(new EspacoSenhaCripto())
-        const useCase = new RegistrarUsuario(new SenhaCripto())
+        const useCase = new RegistrarUsuario(
+            new RepositorioUsuarioEmMemoria(),
+            new SenhaCripto(),
+        )
 
         await useCase.executar(usuario)
         await TerminalUtil.sucesso("Usuário registrado com sucesso!")
